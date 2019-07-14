@@ -5,8 +5,6 @@ import click
 from price_watcher.amazon import get_product_info, get_url
 from price_watcher.notifications import send_text
 
-# 'B01FV4TAKK'
-
 
 def write_result(history_file, prices):
     with open(history_file, "a+") as outfile:
