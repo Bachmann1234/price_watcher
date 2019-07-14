@@ -21,8 +21,8 @@ def write_result(history_file, prices):
 @click.argument("product_id", type=click.STRING)
 @click.argument("target_price", type=click.FLOAT)
 @click.argument("phone_number", type=click.STRING)
-@click.argument(
-    "history_file", type=click.Path(dir_okay=False, writable=True), required=False
+@click.option(
+    "--history_file", type=click.Path(dir_okay=False, writable=True), required=False
 )
 def check_product(product_id, target_price, phone_number, history_file):
     product_info = get_product_info(product_id)
