@@ -1,8 +1,11 @@
 import os
 import responses
 
-from price_watcher import get_current_prices
-from price_watcher.amazon import get_url as amazon_product_url
+from price_watcher.amazon import (
+    get_url as amazon_product_url,
+    ProductInfo,
+    get_product_info,
+)
 
 
 def _load_response_file(filename):
@@ -10,10 +13,10 @@ def _load_response_file(filename):
 
 
 def test_live():
-    result = get_current_prices("B01FV4TAKK")
+    result = get_product_info("B01FV4TAKK")
     assert result
-    assert len(result["prices"])
-    assert result["title"]
+    assert len(result.prices)
+    assert result.name
 
 
 @responses.activate
@@ -25,9 +28,9 @@ def test_mocked_response():
         responses.GET, amazon_product_url(product_id), body=response, status=200
     )
 
-    result = get_current_prices(product_id)
-    expected_result = {
-        "title": "Tormek Sharpening System Magnum Bundle TBM803 T-8. A Complete Water Cooled Sharpener With 13 Popular Jigs and Accessories",
-        "prices": [1235.0, 1235.0, 1235.0, 1235.99, 1438.6, 2090.64],
-    }
+    result = get_product_info(product_id)
+    expected_result = ProductInfo(
+        name="Tormek Sharpening System Magnum Bundle TBM803 T-8. A Complete Water Cooled Sharpener With 13 Popular Jigs and Accessories",
+        prices=[1235.0, 1235.0, 1235.0, 1235.99, 1438.6, 2090.64],
+    )
     assert result == expected_result

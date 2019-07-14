@@ -1,3 +1,3 @@
-from price_watcher import check_product
+from price_watcher.cli import check_product
 
 check_product()

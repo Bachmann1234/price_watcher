@@ -1,7 +1,14 @@
 import requests
+import attr
 from bs4 import BeautifulSoup
 
 _OFFER_URL = "https://www.amazon.com/gp/offer-listing/{product_id}/?ie=UTF8"
+
+
+@attr.s
+class ProductInfo(object):
+    name = attr.ib()
+    prices = attr.ib()
 
 
 def _format_title(title):
@@ -37,13 +44,13 @@ def get_url(product_id):
     return _OFFER_URL.format(product_id=product_id)
 
 
-def get_current_prices(product_id):
+def get_product_info(product_id):
     product_offer_page = _parse_page(_retrieve_product_page(product_id))
-    return {
-        "title": _format_title(product_offer_page.find("title").text),
-        "prices": [
+    return ProductInfo(
+        name=_format_title(product_offer_page.find("title").text),
+        prices=[
             _format_price(price.text)
             for price in product_offer_page.find_all("span", {"class": "olpOfferPrice"})
             if price
         ],
-    }
+    )
