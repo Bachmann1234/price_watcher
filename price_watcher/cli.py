@@ -36,5 +36,5 @@ def check_product(product_id, target_price, phone_number, history_file):
             "Found {} for ${}! {}".format(
                 product_info.name, minimum_price, get_url(product_id)
             ),
-            phone_number
+            phone_number,
         )
