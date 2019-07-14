@@ -20,9 +20,23 @@ def write_result(history_file, prices):
 @click.argument("target_price", type=click.FLOAT)
 @click.argument("phone_number", type=click.STRING)
 @click.option(
-    "--history_file", type=click.Path(dir_okay=False, writable=True), required=False
+    "--history_file",
+    type=click.Path(dir_okay=False, writable=True),
+    required=False,
+    help="Record all prices to this file",
 )
 def check_product(product_id, target_price, phone_number, history_file):
+    """
+    Checks Amazon offers for the provided product id and texts the requested number
+    if we find one below the provided target price
+
+    This script depends on a working twilio client. To build one the script
+    expects the following environment variables to be defined.
+    Its the SID, the auth, and the phone number to use for sending texts.
+    PRICE_WATCHER_SID
+    PRICE_WATCHER_AUTH
+    PRICE_WATCHER_PHONE_NUMBER
+    """
     product_info = get_product_info(product_id)
     minimum_price = min(product_info.prices)
     print("Min: {}".format(minimum_price))
