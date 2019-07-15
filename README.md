@@ -41,5 +41,3 @@ black .
 I wrote this for one very specific product. 
 It works for others (specifically ones that have a [Offer Listing](https://www.amazon.com/gp/offer-listing/B01FV4TAKK/ref=dp_olp_new_mbc?ie=UTF8&condition=new)) but I have
 not had a need yet so I have not seen how robust the scrape is
-
-How do you best monitor a long running cron task? 
