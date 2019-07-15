@@ -31,7 +31,7 @@ def test_check_product_below_target(monkeypatch):
     runner = CliRunner()
     result = runner.invoke(check_product, ["123", "1000", "2025550112"])
     assert result.exit_code == 0
-    assert result.output == "Min: 100\n[100, 200]\n"
+    assert result.output == "ProductInfo(name='Cool Product', prices=[100, 200])\n"
     assert send_text.mock_calls == [
         call("Found Cool Product for $100! https://www.example.com", "2025550112")
     ]
@@ -42,7 +42,7 @@ def test_check_product_below_above_target(monkeypatch):
     runner = CliRunner()
     result = runner.invoke(check_product, ["123", "10", "2025550112"])
     assert result.exit_code == 0
-    assert result.output == "Min: 100\n[100, 200]\n"
+    assert result.output == "ProductInfo(name='Cool Product', prices=[100, 200])\n"
     send_text.assert_not_called()
 
 

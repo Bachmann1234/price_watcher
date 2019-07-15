@@ -21,7 +21,7 @@ def write_result(history_file, prices):
 @click.argument("phone_number", type=click.STRING)
 @click.option(
     "--history_file",
-    type=click.Path(dir_okay=False, writable=True),
+    type=click.Path(dir_okay=False, writable=True, allow_dash=True),
     required=False,
     help="Record all prices to this file",
 )
@@ -39,8 +39,7 @@ def check_product(product_id, target_price, phone_number, history_file):
     """
     product_info = get_product_info(product_id)
     minimum_price = min(product_info.prices)
-    print("Min: {}".format(minimum_price))
-    print(product_info.prices)
+    print(product_info)
     if history_file:
         write_result(history_file, product_info.prices)
     if minimum_price <= target_price:
