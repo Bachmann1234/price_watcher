@@ -18,7 +18,7 @@ URL = "https://github.com/bachmann1234/price_watcher"
 EMAIL = "bachmann.matt@gmail.com"
 AUTHOR = "Matt Bachmann"
 REQUIRES_PYTHON = ">=3.7.0"
-VERSION = "1.0.1"
+VERSION = "1.1.0"
 
 # What packages are required for this module to be executed?
 REQUIRED = ["requests", "attrs", "Click", "beautifulsoup4", "twilio"]
