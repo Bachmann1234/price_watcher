@@ -20,13 +20,12 @@ def check_product_cli(product_id, target_price, phone_number):
     PRICE_WATCHER_AUTH
     PRICE_WATCHER_PHONE_NUMBER
     """
-    check_product(product_id, target_price, phone_number)
+    print(check_product(product_id, target_price, phone_number))
 
 
 def check_product(product_id, target_price, phone_number):
     product_info = get_product_info(product_id)
     minimum_price = min(product_info.prices)
-    print(product_info)
     if minimum_price <= target_price:
         send_text(
             "Found {} for ${}! {}".format(
@@ -34,3 +33,4 @@ def check_product(product_id, target_price, phone_number):
             ),
             phone_number,
         )
+    return product_info
