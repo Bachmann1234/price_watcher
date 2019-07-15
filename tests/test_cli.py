@@ -1,4 +1,3 @@
-from datetime import datetime
 from unittest.mock import Mock, call
 
 from click.testing import CliRunner
@@ -6,12 +5,6 @@ from click.testing import CliRunner
 from price_watcher import cli
 from price_watcher.amazon import ProductInfo
 from price_watcher.cli import check_product_cli
-
-
-class MockDatetime(object):
-    @classmethod
-    def utcnow(cls):
-        return datetime.utcfromtimestamp(1563137468.201281)
 
 
 def _set_mocks(monkeypatch):

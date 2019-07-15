@@ -1,5 +1,5 @@
 [run]
-omit = tests/*
+omit = venv/*,setup.py,price_watcher/__main__.py
 
 [report]
 exclude_lines =

@@ -1,0 +1,23 @@
+language: python
+sudo: required
+dist: xenial
+python: '3.7'
+env:
+  global:
+  - CODECOV_TOKEN="f29bb0af-060f-47fd-a582-82b09c72deca"
+install:
+- pip install -r requirements.txt codecov
+script:
+- python -m pytest -v --cov-config .coveragerc --cov=./ tests
+after_success:
+- codecov
+notifications:
+  on_success: change
+  on_failure: always
+deploy:
+  - provider: pypi
+    username: matt.bachmann
+    password:
+      secure: P8/5Qpsuk5yVCVPRDmc40xZLqyEiKssI58CGG++Pk5NtnkqrQznhcFxYZbp7k/onCIHOBkr9leYJluEUowlTPTd0WRtCi5iN130FQP7s08gvkvFAT9jGTYFYXEcO/l3rZwbUKx1UeaugaUr9lMF3mW3lkLd8V7a/tzbo9Fx5aYvJh71/rCZqAecjz4mOhULYSM6A4wnOYZa15uhp+TkkN/ttmfrOclYbhHyjOSmR5YmYG7rsI9rkb6hZDbPgc2uOL8up09Nq6ckvCvRJv6mwzjHPWewJoy7FzBwmPlBD+Qta2KRP1lECIMbwJANpYVZPpfGW0sHfnHJoZfGNggkpizPoJWQVKO4VRAd9sxx2sgBNJcl0ag2NdV4qOQtcVtQNETHmjHx0zETPGf9vrRrJt29bGT0sRzdcxFj3KxTyEIeD/MfnpcRzMxBIw7n9t9Dd9pq3t2CV/iYoILo1RDg6Gd3DLS5pkYAIZSGJrH4R8IuyhtacYsX6jq6U9oZ/FmU8S1hlgjC+ClNcj8X2XSTCuJhC9YTbu6PisiY0KohXjOcCsyxY7bt7MOKpJtcqmO/RLgtHADCA4/XQapXiPAVqRePnXzrL4JDyJDvDVXk8sfqo5qSzfuby9fDDnuxQe/BmBnvZ9jaOpLRSu0awNlw5KNxiPUhF23EWLrw28w4f/Bg=
+    on:
+      tags: true

@@ -1,6 +1,6 @@
 # Price Watcher
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
-
+[![Build Status](https://travis-ci.org/Bachmann1234/price_watcher.svg?branch=master)](https://travis-ci.org/Bachmann1234/price_watcher)
 
 This repo is a script I wrote to help watch a product page 
 on amazon. Basically waiting to see if the product drops below a certain price.
