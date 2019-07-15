@@ -11,14 +11,8 @@ The following will check the page and text the number 2025550112 if it finds a p
 price_watcher B01FV4TAKK 1000 2025550112
 ```
 
-This version does the same but appends the prices it finds to a history file
-
-```bash
-price_watcher B01FV4TAKK 1000 2025550112 --history_file=history.txt
-```
-
-the intended use of this script is as something you would throw into a cron task such that it runs periodically and texts
-you if it finds an issue.
+the intended use of this script is as something you would throw into a cron task (or an aws lambda function like I did)
+and let it watch a page for you
 
 ## Developing
 

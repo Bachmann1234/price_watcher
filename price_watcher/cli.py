@@ -1,31 +1,14 @@
-from datetime import datetime
-
 import click
 
 from price_watcher.amazon import get_product_info, get_url
 from price_watcher.notifications import send_text
 
 
-def write_result(history_file, prices):
-    with open(history_file, "a+") as outfile:
-        outfile.write(
-            "{}|{}\n".format(
-                datetime.utcnow().isoformat(), ",".join(str(price) for price in prices)
-            )
-        )
-
-
 @click.command()
 @click.argument("product_id", type=click.STRING)
 @click.argument("target_price", type=click.FLOAT)
 @click.argument("phone_number", type=click.STRING)
-@click.option(
-    "--history_file",
-    type=click.Path(dir_okay=False, writable=True, allow_dash=True),
-    required=False,
-    help="Record all prices to this file",
-)
-def check_product(product_id, target_price, phone_number, history_file):
+def check_product_cli(product_id, target_price, phone_number):
     """
     Checks Amazon offers for the provided product id and texts the requested number
     if we find one below the provided target price
@@ -37,11 +20,13 @@ def check_product(product_id, target_price, phone_number, history_file):
     PRICE_WATCHER_AUTH
     PRICE_WATCHER_PHONE_NUMBER
     """
+    check_product(product_id, target_price, phone_number)
+
+
+def check_product(product_id, target_price, phone_number):
     product_info = get_product_info(product_id)
     minimum_price = min(product_info.prices)
     print(product_info)
-    if history_file:
-        write_result(history_file, product_info.prices)
     if minimum_price <= target_price:
         send_text(
             "Found {} for ${}! {}".format(
