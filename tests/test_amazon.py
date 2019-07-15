@@ -22,7 +22,7 @@ def test_live():
 @responses.activate
 def test_mocked_response():
     product_id = "B01FV4TAKK"
-    with open(_load_response_file("product_page_B01FV4TAKK.html")) as infile:
+    with open(_load_response_file("product_page_B01FV4TAKK")) as infile:
         response = infile.read()
     responses.add(
         responses.GET, amazon_product_url(product_id), body=response, status=200
