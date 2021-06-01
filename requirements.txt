@@ -53,7 +53,7 @@ tqdm==4.32.2
 twilio==6.29.1
 twine==1.13.0
 typed-ast==1.4.0
-urllib3==1.25.3
+urllib3==1.26.5
 virtualenv==16.6.1
 w3lib==1.20.0
 wcwidth==0.1.7
