@@ -12,13 +12,6 @@ def _load_response_file(filename):
     return os.path.join(os.path.dirname(os.path.abspath(__file__)), filename)
 
 
-def test_live():
-    result = get_product_info("B01FV4TAKK")
-    assert result
-    assert len(result.prices)
-    assert result.name
-
-
 @responses.activate
 def test_mocked_response():
     product_id = "B01FV4TAKK"
