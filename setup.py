@@ -17,7 +17,7 @@ DESCRIPTION = "Watches prices on amazon product pages"
 URL = "https://github.com/bachmann1234/price_watcher"
 EMAIL = "bachmann.matt@gmail.com"
 AUTHOR = "Matt Bachmann"
-REQUIRES_PYTHON = ">=3.7.0"
+REQUIRES_PYTHON = ">=3.9.0"
 VERSION = "1.1.0"
 
 # What packages are required for this module to be executed?
@@ -115,7 +115,7 @@ setup(
         "License :: OSI Approved :: Apache Software License",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: Implementation :: CPython",
         "Programming Language :: Python :: Implementation :: PyPy",
     ],
