@@ -4,11 +4,16 @@ from price_watcher.amazon import get_product_info, get_url
 from price_watcher.notifications import send_text
 
 
-@click.command()
+@click.group()
+def cli():
+    pass
+
+
+@cli.command()
 @click.argument("product_id", type=click.STRING)
 @click.argument("target_price", type=click.FLOAT)
 @click.argument("phone_number", type=click.STRING)
-def check_product_cli(product_id, target_price, phone_number):
+def check_amazon_cli(product_id, target_price, phone_number):
     """
     Checks Amazon offers for the provided product id and texts the requested number
     if we find one below the provided target price
@@ -20,10 +25,10 @@ def check_product_cli(product_id, target_price, phone_number):
     PRICE_WATCHER_AUTH
     PRICE_WATCHER_PHONE_NUMBER
     """
-    print(check_product(product_id, target_price, phone_number))
+    print(check_amazon_product(product_id, target_price, phone_number))
 
 
-def check_product(product_id, target_price, phone_number):
+def check_amazon_product(product_id, target_price, phone_number):
     product_info = get_product_info(product_id)
     minimum_price = min(product_info.prices)
     if minimum_price <= target_price:

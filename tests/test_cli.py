@@ -4,7 +4,7 @@ from click.testing import CliRunner
 
 from price_watcher import cli
 from price_watcher.amazon import ProductInfo
-from price_watcher.cli import check_product_cli
+from price_watcher.cli import check_amazon_cli
 
 
 def _set_mocks(monkeypatch):
@@ -22,7 +22,7 @@ def _set_mocks(monkeypatch):
 def test_check_product_cli_below_target(monkeypatch):
     _, _, send_text = _set_mocks(monkeypatch)
     runner = CliRunner()
-    result = runner.invoke(check_product_cli, ["123", "1000", "2025550112"])
+    result = runner.invoke(check_amazon_cli, ["123", "1000", "2025550112"])
     assert result.exit_code == 0
     assert result.output == "ProductInfo(name='Cool Product', prices=[100, 200])\n"
     assert send_text.mock_calls == [
@@ -33,7 +33,7 @@ def test_check_product_cli_below_target(monkeypatch):
 def test_check_product_cli_below_above_target(monkeypatch):
     _, _, send_text = _set_mocks(monkeypatch)
     runner = CliRunner()
-    result = runner.invoke(check_product_cli, ["123", "10", "2025550112"])
+    result = runner.invoke(check_amazon_cli, ["123", "10", "2025550112"])
     assert result.exit_code == 0
     assert result.output == "ProductInfo(name='Cool Product', prices=[100, 200])\n"
     send_text.assert_not_called()
