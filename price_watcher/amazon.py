@@ -1,14 +1,16 @@
+from dataclasses import dataclass
+from typing import List
+
 import requests
-import attr
 from bs4 import BeautifulSoup
 
 _OFFER_URL = "https://www.amazon.com/gp/offer-listing/{product_id}/?ie=UTF8"
 
 
-@attr.s
-class ProductInfo(object):
-    name = attr.ib()
-    prices = attr.ib()
+@dataclass
+class ProductInfo:
+    name: str
+    prices: List[float]
 
 
 def _format_title(title):

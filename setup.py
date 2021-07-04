@@ -21,7 +21,7 @@ REQUIRES_PYTHON = ">=3.9.0"
 VERSION = "1.1.0"
 
 # What packages are required for this module to be executed?
-REQUIRED = ["requests", "attrs", "Click", "beautifulsoup4", "twilio"]
+REQUIRED = ["requests", "Click", "beautifulsoup4", "twilio"]
 
 # What packages are optional?
 EXTRAS = {
@@ -104,7 +104,7 @@ setup(
     packages=find_packages(exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
     # If your package is a single module, use this instead of 'packages':
     # py_modules=['mypackage'],
-    entry_points={"console_scripts": ["price_watcher=price_watcher.__main__:main"]},
+    entry_points={"console_scripts": ["price_watcher=price_watcher.__main__:cli"]},
     install_requires=REQUIRED,
     extras_require=EXTRAS,
     include_package_data=True,

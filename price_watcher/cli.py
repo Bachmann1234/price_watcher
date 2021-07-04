@@ -2,6 +2,7 @@ import click
 
 from price_watcher.amazon import get_product_info, get_url
 from price_watcher.notifications import send_text
+from price_watcher.thistle_and_spire import get_product_status
 
 
 @click.group()
@@ -39,3 +40,24 @@ def check_amazon_product(product_id, target_price, phone_number):
             phone_number,
         )
     return product_info
+
+
+@cli.command()
+@click.argument("product_name", type=click.STRING)
+@click.argument("size", type=click.STRING)
+@click.argument("phone_number", type=click.STRING)
+def check_thistle_and_spire_cli(product_name, size, phone_number):
+    """
+    For some reason on the site the sizes are called swatches
+    I am guessing it used to be just color?
+    """
+    print(check_thistle_and_spire(product_name, size, phone_number))
+
+
+def check_thistle_and_spire(product_name, size, phone_number):
+    status_by_size = get_product_status(product_name)
+    result = status_by_size.get(size.upper())
+    msg = f"{product_name} in size {size} {'is' if result else 'is not'} in stock!"
+    if result:
+        send_text(msg, phone_number)
+    return msg
