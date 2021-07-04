@@ -110,3 +110,5 @@ venv.bak/
 .idea
 
 *.sqlite3
+
+.env.local
