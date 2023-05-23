@@ -4,7 +4,7 @@ click==8.0.1
 coverage==5.5
 pytest==6.2.4
 pytest-cov==2.12.1
-requests==2.25.1
+requests==2.31.0
 responses==0.13.3
 twilio==6.61.0
 pre-commit==2.13.0
